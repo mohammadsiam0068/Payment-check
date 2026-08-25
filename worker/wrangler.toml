@@ -5,4 +5,4 @@ compatibility_date = "2024-09-23"
 [[d1_databases]]
 binding = "DB"
 database_name = "payments_db"
-database_id = "YOUR_D1_DATABASE_ID"
+database_id = "c14919c0-6eaf-452f-9332-741f47d011d5"
