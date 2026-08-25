@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS transactions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  trx_id TEXT UNIQUE NOT NULL,
+  sender_number TEXT NOT NULL,
+  amount REAL NOT NULL,
+  status TEXT NOT NULL DEFAULT 'unused',
+  created_at TEXT NOT NULL
+);

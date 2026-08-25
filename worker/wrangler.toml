@@ -1,0 +1,8 @@
+name = "bkash-nagad-payment-api"
+main = "index.js"
+compatibility_date = "2024-09-23"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "payments_db"
+database_id = "YOUR_D1_DATABASE_ID"
