@@ -1,7 +1,7 @@
 import os
 import requests
 
-WORKER_URL = os.environ.get("WORKER_URL", "https://your-worker.your-subdomain.workers.dev")
+WORKER_URL = os.environ.get("WORKER_URL", "https://payment-check.mohammadsiam0068.workers.dev")
 API_SECRET_KEY = os.environ.get("API_SECRET_KEY", "")
 
 
