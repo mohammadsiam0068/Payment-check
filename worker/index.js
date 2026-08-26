@@ -80,7 +80,10 @@ async function handleAddSms(smsText, env) {
   const parsed = parseSms(smsText);
 
   if (!parsed) {
-    return new Response(JSON.stringify({ status: "error", message: "Could not parse SMS" }), { status: 422 });
+    return new Response(
+      JSON.stringify({ status: "error", message: "Could not parse SMS", received: smsText }),
+      { status: 422 }
+    );
   }
 
   const { trxId, amount, senderNumber } = parsed;
