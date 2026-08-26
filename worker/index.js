@@ -12,16 +12,16 @@ export default {
       return new Response(JSON.stringify({ status: "error", message: "Unauthorized" }), { status: 401 });
     }
 
-    let body;
-    try {
-      body = await request.json();
-    } catch (e) {
-      return new Response(JSON.stringify({ status: "error", message: "Invalid JSON" }), { status: 400 });
-    }
-
     if (url.pathname === "/add-sms") {
-      return handleAddSms(body, env);
+      const smsText = await request.text();
+      return handleAddSms(smsText, env);
     } else if (url.pathname === "/verify-trx") {
+      let body;
+      try {
+        body = await request.json();
+      } catch (e) {
+        return new Response(JSON.stringify({ status: "error", message: "Invalid JSON" }), { status: 400 });
+      }
       return handleVerifyTrx(body, env);
     }
 
@@ -72,9 +72,8 @@ function parseSms(text) {
   return null;
 }
 
-async function handleAddSms(body, env) {
-  const smsText = body.sms_text;
-  if (!smsText || typeof smsText !== "string") {
+async function handleAddSms(smsText, env) {
+  if (!smsText || typeof smsText !== "string" || smsText.trim() === "") {
     return new Response(JSON.stringify({ status: "error", message: "sms_text required" }), { status: 400 });
   }
 
