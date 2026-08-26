@@ -23,3 +23,28 @@ def verify_transaction(trx_id: str):
             return {"success": False, "message": data.get("message", "Unknown error")}
     except requests.RequestException as e:
         return {"success": False, "message": str(e)}
+
+
+def verify_crypto_transaction(tx_id: str):
+    url = f"{WORKER_URL}/verify-crypto-trx"
+    headers = {
+        "Authorization": f"Bearer {API_SECRET_KEY}",
+        "Content-Type": "application/json",
+    }
+    payload = {"tx_id": tx_id}
+
+    try:
+        response = requests.post(url, json=payload, headers=headers, timeout=15)
+        data = response.json()
+
+        if response.status_code == 200 and data.get("status") == "success":
+            return {
+                "success": True,
+                "amount": data.get("amount"),
+                "coin": data.get("coin"),
+                "network": data.get("network"),
+            }
+        else:
+            return {"success": False, "message": data.get("message", "Unknown error")}
+    except requests.RequestException as e:
+        return {"success": False, "message": str(e)}
