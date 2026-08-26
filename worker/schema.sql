@@ -6,3 +6,13 @@ CREATE TABLE IF NOT EXISTS transactions (
   status TEXT NOT NULL DEFAULT 'unused',
   created_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS crypto_transactions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  tx_id TEXT UNIQUE NOT NULL,
+  coin TEXT NOT NULL,
+  network TEXT NOT NULL,
+  amount REAL NOT NULL,
+  status TEXT NOT NULL DEFAULT 'used',
+  created_at TEXT NOT NULL
+);
